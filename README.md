@@ -10,12 +10,19 @@
 - kapp deploy -a tap-manager -f ./build-app -n tap-install 
 
 ## install eso
+helm repo add external-secrets https://charts.external-secrets.io
+
 helm install external-secrets \
    external-secrets/external-secrets \
     -n external-secrets \
     --create-namespace \
     --set installCRDs=true
+    
+In order to begin using ExternalSecrets, you will need to set up a SecretStore
+or ClusterSecretStore resource (for example, by creating a 'vault' SecretStore).
 
+More information on the different types of SecretStores and how to configure them
+can be found in our Github: https://github.com/external-secrets/external-secrets
 
 ## enable azure workload identity
 https://external-secrets.io/v0.8.1/provider/azure-key-vault/#workload-identity
